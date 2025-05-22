@@ -1,51 +1,75 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class PlayerSlash : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     private bool isSlashing;
-    public Animator animator;
     private bool canSlash = true;
-    public Slash slashScript;
-    private Vector2 lastDirection = Vector2.right;
+
+    public Animator animator;
+    public Slash    slashScript;
     public AudioSource SlashSource;
+
+    private Vector2 lastDirection = Vector2.right;
+    private PlayerMovement playerMovement;
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        if (animator == null)
+            animator = GetComponent<Animator>();
+
+        playerMovement = GetComponent<PlayerMovement>();
+        if (playerMovement == null)
+            Debug.LogError("PlayerSlash: PlayerMovement não encontrado!");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        if (moveInput != Vector2.zero)
-        {
-            lastDirection = moveInput;
-        }
+        // Atualiza a direção de ataque
+        lastDirection = playerMovement.LastMoveDirection;
+
+        // Slash por teclado
         if (Input.GetKeyDown(KeyCode.Z) && canSlash)
         {
-            slashScript.SlashPre(lastDirection.normalized);
-            StartCoroutine(Slash());
+            ExecuteSlash();
         }
-
     }
 
-    private IEnumerator Slash()
+    private void ExecuteSlash()
     {
-        canSlash = false;
+        slashScript.SlashPre(lastDirection.normalized);
+        StartCoroutine(SlashRoutine());
+    }
+
+    private IEnumerator SlashRoutine()
+    {
+        canSlash   = false;
         isSlashing = true;
 
         animator.SetFloat("AttackX", lastDirection.x);
         animator.SetFloat("AttackY", lastDirection.y);
-        animator.SetBool("Slashing", isSlashing);
-        SlashSource.Play();
+        animator.SetBool("Slashing", true);
+        SlashSource?.Play();
+
         yield return new WaitForSeconds(0.4f);
+
+        animator.SetBool("Slashing", false);
         isSlashing = false;
-        animator.SetBool("Slashing", isSlashing);
+
         yield return new WaitForSeconds(0.1f);
         canSlash = true;
+    }
+
+    /// <summary>
+    /// Chamado pelo HUDController ao clicar no botão de ataque.
+    /// </summary>
+    public bool TrySlash()
+    {
+        if (canSlash)
+        {
+            ExecuteSlash();
+            return true;
+        }
+        return false;
     }
 }

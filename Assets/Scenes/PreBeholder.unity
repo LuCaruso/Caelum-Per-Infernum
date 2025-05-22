@@ -263,11 +263,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 255324744}
+    - target: {fileID: 9153058125022972074, guid: 3eb641bda4ce6284dbd5c81fb2e627f4, type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 84190422}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eb641bda4ce6284dbd5c81fb2e627f4, type: 3}
+--- !u!114 &84190422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3632912009917696951, guid: 3eb641bda4ce6284dbd5c81fb2e627f4, type: 3}
+  m_PrefabInstance: {fileID: 84190421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eaf522bc35f7f740b7e427ac50f4ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &175225487
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7485506265511745287, guid: 4cc1963e8a9afd743a64d20610709399, type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 84190422}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
