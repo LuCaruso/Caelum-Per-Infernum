@@ -141,8 +141,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 1.0
-  preloadedAssets:
-  - {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -863,11 +862,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 98c45dda-8924-446b-aa03-d6538608e437
+  cloudProjectId: 7988d881-ad26-420c-9a15-ddbcffb2d716
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BossRush
-  organizationId: dutipini
+  projectName: Caelum Per Infernum
+  organizationId: joaoagg1
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
