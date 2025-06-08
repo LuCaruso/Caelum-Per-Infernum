@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool died = false;
+    private Animator playerAnimator;
     private Rigidbody2D rb;
     private PlayerMovement playerMovement;
     [SerializeField] private Collider2D mainCollider;
@@ -20,13 +22,17 @@ public class PlayerHealth : MonoBehaviour
         if (GameManager.Instance != null) health = GameManager.Instance.playerHealth;
         maxHealth = health;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Collider2D selfCollider = GetComponent<Collider2D>();
+        bool selfIsTrigger = selfCollider.isTrigger;
+        bool otherIsTrigger = other.isTrigger;
+
         if (!isInvincible && other.CompareTag("EnemyAttack"))
         {
             if (other.IsTouching(mainCollider))
@@ -38,11 +44,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-        if (died) return; // Não perde vida se já morreu
-
         GameManager.Instance.playerHealth -= damage;
         health -= damage;
         health = Mathf.Max(health, 0);
+        Debug.Log($"Player hit! Health: {health}/{maxHealth}");
+        if (died)
+        {
+            return;
+        }
 
         if (health <= 0)
         {
@@ -57,9 +66,10 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
+
+        // Optional: flash the sprite
         float flashInterval = 0.1f;
         float elapsed = 0f;
-
         while (elapsed < invincibilityDuration)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
@@ -67,27 +77,24 @@ public class PlayerHealth : MonoBehaviour
             elapsed += flashInterval;
         }
         spriteRenderer.enabled = true;
+
         isInvincible = false;
     }
 
     private void Die()
     {
-        died = true;
-
         PlayerSlash playerSlash = GetComponent<PlayerSlash>();
-        if (playerSlash != null) playerSlash.enabled = false;
-
+        playerSlash.enabled = false;
         Slash slash = GetComponent<Slash>();
-        if (slash != null) slash.enabled = false;
-
+        slash.enabled = false;
+        animator = GetComponent<Animator>();
         animator.SetTrigger("Death");
         playerMovement.enabled = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        animator.SetBool("Moving", false);
-
-        // Aqui avisamos o GameManager que o player morreu, se quiser
-        // ou você pode avisar o HUDController via evento.
+        playerAnimator.SetBool("Moving", false);
+        died = true;
     }
+
 
     public void RevivePlayer()
     {

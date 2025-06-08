@@ -331,7 +331,6 @@ public class HUDController : MonoBehaviour
         GameManager.Instance.hasSlashAbility = false;
     }
 
-
     private IEnumerator ShowVictoryAfterDelay()
     {
         yield return new WaitForSeconds(5f);
@@ -357,46 +356,8 @@ public class HUDController : MonoBehaviour
         GameManager.Instance.playerHealth = 5;
         SceneManager.LoadScene(mainMenuSceneName);
     }
-    public void TriggerDefeat()
-    {
-        if (!defeatTriggered)
-        {
-            defeatTriggered = true;
-            StartCoroutine(ShowDefeatAfterDelay());
-        }
-    }
-    public void HideDefeatPanelAfterRevive()
-    {
-        if (endGamePanelDefeat != null && endGamePanelDefeat.activeSelf)
-        {
-            endGamePanelDefeat.SetActive(false);
-            Time.timeScale = 1f;
-            defeatTriggered = false;  // Permite que a morte possa ocorrer novamente
-        }
-    }
-    void OnEnable()
-    {
-        InterstitialAdExample.OnAdFinishedSuccessfully += OnAdFinishedSuccessfullyHandler;
-    }
 
-    void OnDisable()
-    {
-        InterstitialAdExample.OnAdFinishedSuccessfully -= OnAdFinishedSuccessfullyHandler;
-    }
-
-    private void OnAdFinishedSuccessfullyHandler()
-    {
-        HideDefeatPanelAfterRevive();
-        
-        // Chame o método que restaura o player (vida, controles, etc.)
-        GameManager.Instance.RewardPlayerAfterAd();
-
-    }
-
-
-
-
-    public void HoverPause_Enter() => pauseLight?.SetActive(true);
+    public void HoverPause_Enter()       => pauseLight?.SetActive(true);
     public void HoverPause_Exit()        => pauseLight?.SetActive(false);
     public void HoverPauseClose_Enter()  => pauseCloseLight?.SetActive(true);
     public void HoverPauseClose_Exit()   => pauseCloseLight?.SetActive(false);
