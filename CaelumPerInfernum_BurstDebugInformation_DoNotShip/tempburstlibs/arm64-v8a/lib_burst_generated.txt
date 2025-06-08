@@ -9,7 +9,6 @@ Library: C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Pe
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.45f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Library\Burst
 --output=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
@@ -37,7 +36,6 @@ Library: C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Pe
 --float-mode=Fast
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.45f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Library\Burst
 --output=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
@@ -55,7 +53,6 @@ Library: C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Pe
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.45f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Library\Burst
 --output=C:\Users\lucac\Downloads\7 Semestre\Jogos\Caelum per Infernum\Caelum-Per-Infernum\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
