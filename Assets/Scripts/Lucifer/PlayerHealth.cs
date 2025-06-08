@@ -91,35 +91,41 @@ public class PlayerHealth : MonoBehaviour
 
     public void RevivePlayer()
     {
+        // Restaura a vida
         health = maxHealth;
         GameManager.Instance.playerHealth = health;
 
+        // Reseta flags de morte
         isInvincible = false;
         died = false;
 
+        // Reativa movimentação e física
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        playerMovement.enabled = true;
+        if (mainCollider != null) mainCollider.enabled = true;
 
+        if (playerMovement != null) playerMovement.enabled = true;
+
+        // Reativa scripts de ataque
         PlayerSlash playerSlash = GetComponent<PlayerSlash>();
         if (playerSlash != null) playerSlash.enabled = true;
 
         Slash slash = GetComponent<Slash>();
         if (slash != null) slash.enabled = true;
 
+        // Reseta o Animator
         animator.ResetTrigger("Death");
-        // Se tiver bool IsDead, desative aqui:
         animator.SetBool("IsDead", false);
-
         animator.SetBool("Moving", false);
-
-        // Força voltar para Idle
         animator.Rebind();
         animator.Update(0f);
-        animator.Play("Idle");
 
+        // Reposiciona o jogador
         transform.position = Vector3.zero;
+        Time.timeScale = 1f;
         Debug.Log("Player revivido!");
     }
+
+
 
 
 }
