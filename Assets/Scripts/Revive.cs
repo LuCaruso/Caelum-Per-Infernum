@@ -8,25 +8,19 @@ public class Revive : MonoBehaviour
 
     private GameObject currentPlayer;
 
-    void Start()
-    {
-        currentPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (currentPlayer == null)
-        {
-            Debug.LogWarning("Player não encontrado na cena!");
-        }
-    }
-
     public void ReviverJogador()
     {
+        // Sempre tenta buscar o player no momento da ação
+        currentPlayer = GameObject.FindGameObjectWithTag("Player");
+
         if (currentPlayer == null)
         {
             Debug.LogError("Não há player para reviver!");
             return;
         }
 
-        endGamePanelDefeat.SetActive(false);
-        pixPanel.SetActive(false);
+        if (endGamePanelDefeat != null) endGamePanelDefeat.SetActive(false);
+        if (pixPanel != null) pixPanel.SetActive(false);
 
         currentPlayer.SetActive(true);
 
