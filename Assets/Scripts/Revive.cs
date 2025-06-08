@@ -4,6 +4,8 @@ public class Revive : MonoBehaviour
 {
     public GameObject endGamePanelDefeat;
     public GameObject pixPanel;
+    public HUDController hudController;
+
     private GameObject currentPlayer;
 
     void Start()
@@ -24,6 +26,7 @@ public class Revive : MonoBehaviour
         }
 
         endGamePanelDefeat.SetActive(false);
+        pixPanel.SetActive(false);
 
         currentPlayer.SetActive(true);
 
@@ -32,6 +35,14 @@ public class Revive : MonoBehaviour
         {
             ph.RevivePlayer();
         }
+
+        if (hudController != null)
+        {
+            hudController.ResetDefeatFlag();
+        }
+        else
+        {
+            Debug.LogWarning("HUDController não está atribuído no Revive!");
+        }
     }
 }
-
